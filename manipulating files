@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define N 3 //Definition of the N size
+
+struct student{
+    int registration; //number registration of the student
+    char name [20]; //Max of 20 characters
+    int grade; //test grades
+};
+
+struct student read (){
+    struct student a;
+    printf("Write the number registration:\n");
+    scanf("%d",&a.registration);
+
+    printf("Write the name of the student:\n");
+    fflush(stdin); //cleaning the buffer
+    gets(a.name); //to read the name
+
+    printf("Write the student's grade:\n");
+    scanf("%d",&a.grade);
+
+return a;
+}
+
+void print (struct student a[N]){
+    int x;
+    for (x=0; x<N; x++){
+    printf("   %d",a[x].registration);
+    printf(" ; %s",a[x].name);
+    printf(" ; %d",a[x].grade);
+    printf("\n");
+}}
+
+int main ()
+{
+    int x;
+    char path[]="student.txt",character;
+    FILE *file;
+    file = fopen (path,"w");
+
+    struct student a[N];
+
+    if (file==NULL){
+            printf("\tThere was an error creating the file.\n");
+    }
+    else{
+            for(x=0; x<N; x++){
+        a[x]= read();
+    fprintf(file,"  %d",a[x].registration);
+    fprintf(file,"; %s",a[x].name);
+    fprintf(file,"; %d",a[x].grade);
+    fprintf(file,"\n");
+    printf("\tThe file was saved successfully.\n");
+}
+    fclose(file);
+}
+    print(a);
+
+return 0;
+    }
